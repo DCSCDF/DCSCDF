@@ -1,10 +1,10 @@
 name: Metrics
 on:
-  # Schedule daily updates
+  # 计划任务：每日0点（UTC）自动执行
   schedule: [{cron: "0 0 * * *"}]
-  # (optional) Run workflow manually
+  # 手动触发工作流
   workflow_dispatch:
-  # (optional) Run workflow when pushing on master/main
+  # 推送至master/main分支时触发
   push: {分支: ["master", "main"]}
 jobs:
   github-metrics:
@@ -17,3 +17,6 @@ jobs:
       - uses: lowlighter/metrics@latest
         with:
           token: ${{ secrets.MYSECRTE }}
+          # 新增日历插件配置 
+          plugin_isocalendar: yes  # 启用等距日历可视化
+          plugin_isocalendar_duration: half-year  # 时间范围：半年（默认值）
